@@ -334,7 +334,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-For questions or support, please open an issue on GitHub.
+**Developer:** Jana Ashraf Elpardisi
+
+- 📧 Email: [janaelpardisi@gmail.com](mailto:janaelpardisi@gmail.com)
+- 💼 LinkedIn: [Jana Ashraf Elpardisi](https://www.linkedin.com/in/jana-ashraf-elpardisi)
+- 🐙 GitHub: [@Janaelpardisi](https://github.com/Janaelpardisi)
+
+For questions, support, or collaboration opportunities, feel free to reach out!
 
 ---
 
