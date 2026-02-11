@@ -1,4 +1,4 @@
-# 🤖 AI Sales Agent
+# AI Sales Agent
 
 > An intelligent, AI-powered lead generation and outreach automation system built with FastAPI, LangChain, and Google Gemini.
 
@@ -7,21 +7,21 @@
 [![LangChain](https://img.shields.io/badge/LangChain-0.1+-orange.svg)](https://langchain.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [API Documentation](#-api-documentation)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 🎯 Overview
+## Overview
 
 **AI Sales Agent** is a comprehensive lead generation and email outreach automation platform that leverages AI to:
 
@@ -33,7 +33,7 @@
 
 Perfect for sales teams, growth hackers, and businesses looking to scale their outbound sales efforts.
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 
@@ -63,15 +63,15 @@ Perfect for sales teams, growth hackers, and businesses looking to scale their o
 
 ### Current Capabilities
 
-✅ Lead research and discovery  
-✅ AI-powered lead qualification  
-✅ Personalized email generation  
-✅ Automated email sending  
-✅ Campaign analytics  
-✅ Unsubscribe management  
-✅ RESTful API  
+- Lead research and discovery  
+- AI-powered lead qualification  
+- Personalized email generation  
+- Automated email sending  
+- Campaign analytics  
+- Unsubscribe management  
+- RESTful API  
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 graph TD
@@ -95,7 +95,7 @@ graph TD
 3. **Personalization Phase**: Generates customized email content
 4. **Outreach Phase**: Sends emails and tracks engagement
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **FastAPI** - Modern, high-performance web framework
@@ -115,7 +115,7 @@ graph TD
 ### Database
 - **SQLite** - Lightweight, serverless database (easily upgradable to PostgreSQL)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -176,7 +176,7 @@ graph TD
    - Backend API: `http://localhost:8000`
    - API Docs: `http://localhost:8000/docs`
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -212,7 +212,7 @@ For detailed Gmail SMTP setup instructions, see [GMAIL_SETUP_GUIDE.md](GMAIL_SET
 2. Generate an App Password
 3. Use the App Password in `SMTP_PASSWORD`
 
-## 📖 Usage
+## Usage
 
 ### Creating a Campaign
 
@@ -253,7 +253,7 @@ async with httpx.AsyncClient() as client:
     print(run_response.json())
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 Once the server is running, visit:
 - **Swagger UI**: `http://localhost:8000/docs`
@@ -269,7 +269,7 @@ Once the server is running, visit:
 - `GET /api/v1/leads/` - List all leads
 - `POST /api/v1/unsubscribe/{token}` - Unsubscribe endpoint
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### Version 1.1 (Planned)
 - [ ] Email open tracking with pixels
@@ -292,7 +292,7 @@ Once the server is running, visit:
 - [ ] Multi-user support with authentication
 - [ ] Webhook support for real-time events
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! This project is in active development.
 
@@ -321,29 +321,29 @@ black .
 flake8 .
 ```
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Amazing web framework
 - [LangChain](https://langchain.com/) - AI orchestration
 - [Google Gemini](https://deepmind.google/technologies/gemini/) - Powerful AI model
 - [Tailwind CSS](https://tailwindcss.com/) - Beautiful styling
 
-## 📧 Contact
+## Contact
 
 **Developer:** Jana Ashraf Elpardisi
 
-- 📧 Email: [janaelpardisi@gmail.com](mailto:janaelpardisi@gmail.com)
-- 💼 LinkedIn: [Jana Ashraf Elpardisi](https://www.linkedin.com/in/jana-ashraf-elpardisi)
-- 🐙 GitHub: [@Janaelpardisi](https://github.com/Janaelpardisi)
+- Email: [janaelpardisi@gmail.com](mailto:janaelpardisi@gmail.com)
+- LinkedIn: [Jana Ashraf Elpardisi](https://www.linkedin.com/in/jana-ashraf-elpardisi)
+- GitHub: [@Janaelpardisi](https://github.com/Janaelpardisi)
 
 For questions, support, or collaboration opportunities, feel free to reach out!
 
 ---
 
-**⚠️ Disclaimer**: This tool is for legitimate business outreach only. Always comply with email marketing laws (CAN-SPAM, GDPR, etc.) and respect unsubscribe requests.
+**Disclaimer**: This tool is for legitimate business outreach only. Always comply with email marketing laws (CAN-SPAM, GDPR, etc.) and respect unsubscribe requests.
 
-**Made with Jana❤️ and AI**
+**Made with love by Jana**

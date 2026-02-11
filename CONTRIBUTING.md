@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to AI Sales Agent! This document provides guidelines and instructions for contributing.
 
-## 🤝 How to Contribute
+## How to Contribute
 
 ### Reporting Bugs
 
@@ -70,7 +70,7 @@ Feature requests are welcome! Please:
    ```
    Then create a Pull Request on GitHub.
 
-## 📝 Code Style
+## Code Style
 
 ### Python
 - Follow PEP 8
@@ -112,7 +112,7 @@ npm install -g prettier
 prettier --write "**/*.js"
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 
@@ -144,21 +144,21 @@ async def test_research_agent():
     assert results[0]["company_name"]
 ```
 
-## 📚 Documentation
+## Documentation
 
 - Update README.md if adding features
 - Add docstrings to new functions/classes
 - Update API documentation if changing endpoints
 - Include examples in documentation
 
-## 🔍 Code Review Process
+## Code Review Process
 
 1. All PRs require review before merging
 2. Address review comments promptly
 3. Keep PRs focused and reasonably sized
 4. Ensure CI/CD checks pass
 
-## 🎯 Development Setup
+## Development Setup
 
 ### Prerequisites
 - Python 3.9+
@@ -192,7 +192,7 @@ cp .env.example .env
 python -m app.main
 ```
 
-## 🐛 Debugging
+## Debugging
 
 ### Backend
 ```bash
@@ -211,7 +211,7 @@ python -m pdb -m app.main
 - Check console for errors
 - Use Network tab for API calls
 
-## 📋 Project Structure
+## Project Structure
 
 ```
 ai-sales-agent/
@@ -233,7 +233,7 @@ ai-sales-agent/
 └── docs/                    # Documentation
 ```
 
-## 🚀 Release Process
+## Release Process
 
 1. Update version in `backend/app/config.py`
 2. Update CHANGELOG.md
@@ -241,16 +241,16 @@ ai-sales-agent/
 4. Build and test
 5. Create GitHub release
 
-## 💬 Communication
+## Communication
 
 - GitHub Issues - Bug reports and feature requests
 - GitHub Discussions - General questions and ideas
 - Pull Requests - Code contributions
 
-## 📜 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 
-## 🙏 Thank You!
+## Thank You!
 
 Your contributions make this project better. Thank you for taking the time to contribute!

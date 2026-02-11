@@ -26,13 +26,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT License
 
 ### Features
-- ✅ Lead research and discovery
-- ✅ AI-powered lead qualification
-- ✅ Personalized email generation
-- ✅ Automated email sending
-- ✅ Campaign analytics
-- ✅ Unsubscribe management
-- ✅ RESTful API with OpenAPI docs
+- Lead research and discovery
+- AI-powered lead qualification
+- Personalized email generation
+- Automated email sending
+- Campaign analytics
+- Unsubscribe management
+- RESTful API with OpenAPI docs
 
 ### Documentation
 - README.md with architecture diagrams

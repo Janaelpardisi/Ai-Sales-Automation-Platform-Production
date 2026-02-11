@@ -65,7 +65,7 @@ python -m app.main
 
 ---
 
-## 🔗 روابط مفيدة
+## روابط مفيدة
 
 - **Google Account Security**: https://myaccount.google.com/security
 - **App Passwords**: https://myaccount.google.com/apppasswords
@@ -73,7 +73,7 @@ python -m app.main
 
 ---
 
-## ⚠️ ملاحظات مهمة
+## ملاحظات مهمة
 
 1. **App Password مش كلمة مرور Gmail العادية** - لازم تعمل واحد جديد
 2. **لازم تفعل 2FA الأول** - مش هتقدر تعمل App Password بدونها
@@ -83,7 +83,7 @@ python -m app.main
 
 ---
 
-## 🧪 اختبار سريع
+## اختبار سريع
 
 بعد ما تحط الـ credentials، جرب:
 

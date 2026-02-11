@@ -128,14 +128,14 @@ docker-compose up -d
 - Read [README.md](README.md) for full documentation
 - Check [API docs](http://localhost:8000/docs)
 - Join discussions on GitHub
-- Star the repo! ⭐
+- Star the repo!
 
 ## Need Help?
 
-- 📖 [Full Documentation](README.md)
-- 🐛 [Report Issues](https://github.com/yourusername/ai-sales-agent/issues)
-- 💬 [Discussions](https://github.com/yourusername/ai-sales-agent/discussions)
+- [Full Documentation](README.md)
+- [Report Issues](https://github.com/yourusername/ai-sales-agent/issues)
+- [Discussions](https://github.com/yourusername/ai-sales-agent/discussions)
 
 ---
 
-Happy lead hunting! 🚀
+Happy lead hunting!
