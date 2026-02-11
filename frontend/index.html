@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales Agent - Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 242, 255, 0.9) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 255, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .campaign-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(243, 244, 255, 0.92) 100%);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(99, 102, 241, 0.12);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .badge-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .badge-info {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .badge-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh;">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="text-3xl">🤖</div>
+                    <div>
+                        <h1 class="text-2xl font-bold">AI Sales Agent</h1>
+                        <p class="text-purple-100 text-xs">Intelligent Lead Generation & Outreach</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="showToast('Analytics feature coming soon!', 'info')"
+                        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition">
+                        <span class="text-xs font-medium">📊 Analytics</span>
+                    </button>
+                    <button onclick="showToast('Settings feature coming soon!', 'info')"
+                        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition">
+                        <span class="text-xs font-medium">⚙️ Settings</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-6 py-4">
+
+        <!-- Stats Grid - Smaller -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <!-- Total Campaigns -->
+            <div class="stat-card rounded-lg p-3 card-hover animate-slide-in">
+                <div class="flex items-center justify-between mb-1">
+                    <div class="text-xl">📊</div>
+                    <span class="text-green-500 text-xs font-semibold">+12%</span>
+                </div>
+                <h3 id="total-campaigns" class="text-xl font-bold text-gray-800">0</h3>
+                <p class="text-gray-600 text-xs">Campaigns</p>
+            </div>
+
+            <!-- Total Leads -->
+            <div class="stat-card rounded-lg p-3 card-hover animate-slide-in" style="animation-delay: 0.1s">
+                <div class="flex items-center justify-between mb-1">
+                    <div class="text-xl">👥</div>
+                    <span class="text-green-500 text-xs font-semibold">+24%</span>
+                </div>
+                <h3 id="total-leads" class="text-xl font-bold text-gray-800">0</h3>
+                <p class="text-gray-600 text-xs">Leads</p>
+            </div>
+
+            <!-- Emails Sent -->
+            <div class="stat-card rounded-lg p-3 card-hover animate-slide-in" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-1">
+                    <div class="text-xl">✉️</div>
+                    <span class="text-green-500 text-xs font-semibold">+8%</span>
+                </div>
+                <h3 id="emails-sent" class="text-xl font-bold text-gray-800">0</h3>
+                <p class="text-gray-600 text-xs">Sent</p>
+            </div>
+
+            <!-- Reply Rate -->
+            <div class="stat-card rounded-lg p-3 card-hover animate-slide-in" style="animation-delay: 0.3s">
+                <div class="flex items-center justify-between mb-1">
+                    <div class="text-xl">📈</div>
+                    <span class="text-yellow-500 text-xs font-semibold">-2%</span>
+                </div>
+                <h3 id="reply-rate" class="text-xl font-bold text-gray-800">0%</h3>
+                <p class="text-gray-600 text-xs">Reply Rate</p>
+            </div>
+        </div>
+
+        <!-- Create Campaign Section - Collapsible -->
+        <div class="content-card rounded-lg shadow-md mb-4 card-hover">
+            <div class="p-3 cursor-pointer" onclick="toggleCampaignForm()">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="text-lg mr-2">➕</div>
+                        <h2 class="text-base font-bold text-gray-800">Create New Campaign</h2>
+                    </div>
+                    <svg id="form-arrow" class="w-4 h-4 transform transition-transform duration-200" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div id="campaign-form-container"
+                style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                <form id="campaign-form" class="p-3 pt-0 space-y-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Campaign Name</label>
+                            <input type="text" id="campaign-name"
+                                class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="e.g., SaaS Outreach Q1 2024" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Industry</label>
+                            <input type="text" id="industry"
+                                class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="e.g., SaaS, FinTech" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Location</label>
+                            <input type="text" id="location"
+                                class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="e.g., USA, Europe">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Company Size</label>
+                            <input type="text" id="company-size"
+                                class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="e.g., 50-200">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Description (Optional)</label>
+                        <textarea id="campaign-description" rows="2"
+                            class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                            placeholder="Brief description"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-1.5 px-3 rounded transition transform hover:scale-105 shadow-lg text-xs">
+                        <span id="create-btn-text">🚀 Create Campaign</span>
+                        <span id="create-loader" class="hidden">⏳ Creating...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Campaigns List - More Compact -->
+        <div class="content-card rounded-lg shadow-md p-3 mb-4 card-hover">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center">
+                    <div class="text-lg mr-2">📋</div>
+                    <h2 class="text-base font-bold text-gray-800">Campaigns</h2>
+                </div>
+                <button onclick="loadCampaigns()"
+                    class="bg-purple-100 hover:bg-purple-200 text-purple-700 font-semibold py-1 px-2 rounded transition text-xs">
+                    🔄 Refresh
+                </button>
+            </div>
+
+            <div id="campaigns-list">
+                <div class="text-center py-4 text-gray-500">
+                    <div class="text-2xl mb-1">⏳</div>
+                    <p class="text-xs">Loading campaigns...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leads List - More Compact -->
+        <div class="content-card rounded-lg shadow-md p-3 card-hover">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center">
+                    <div class="text-lg mr-2">👥</div>
+                    <h2 class="text-base font-bold text-gray-800">Recent Leads</h2>
+                </div>
+                <button onclick="loadLeads()"
+                    class="bg-purple-100 hover:bg-purple-200 text-purple-700 font-semibold py-1 px-2 rounded transition text-xs">
+                    🔄 Refresh
+                </button>
+            </div>
+
+            <div id="leads-list">
+                <div class="text-center py-4 text-gray-500">
+                    <div class="text-2xl mb-1">⏳</div>
+                    <p class="text-xs">Loading leads...</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+
+    <!-- Original JS -->
+    <script src="js/helpers.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Charts Initialization -->
+    <script>
+        // Campaign Performance Chart
+        const campaignCtx = document.getElementById('campaignChart').getContext('2d');
+        const campaignChart = new Chart(campaignCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Leads Generated',
+                    data: [12, 19, 15, 25],
+                    borderColor: '#8B5CF6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Email Stats Chart
+        const emailCtx = document.getElementById('emailChart').getContext('2d');
+        const emailChart = new Chart(emailCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sent', 'Opened', 'Clicked', 'Replied'],
+                datasets: [{
+                    data: [100, 65, 35, 12],
+                    backgroundColor: [
+                        '#3B82F6',
+                        '#8B5CF6',
+                        '#EC4899',
+                        '#10B981'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+# FastAPI
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.25
+aiosqlite==0.19.0
+
+# AI/ML - Compatible versions
+langchain==0.1.16
+langgraph==0.0.39
+langchain-google-genai==0.0.11
+langchain-community==0.0.38
+langchain-core==0.1.52
+langsmith>=0.1.100  # Updated version
+google-generativeai==0.4.1
+
+# Scraping
+playwright==1.41.0
+beautifulsoup4==4.12.3
+httpx==0.26.0
+lxml==5.1.0
+google-search-results==2.4.2  # SerpAPI for real company search
+
+# Email
+aiosmtplib==3.0.1
+email-validator==2.1.0
+
+# Utils
+python-dotenv==1.0.0
+pydantic>=2.5.3,<3.0.0  # Allow minor updates
+pydantic-settings==2.1.0
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3

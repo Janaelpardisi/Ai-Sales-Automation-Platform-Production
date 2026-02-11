@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-sales-agent-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///app/data/sales_agent.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_FROM_EMAIL=${SMTP_FROM_EMAIL}
+      - SMTP_FROM_NAME=${SMTP_FROM_NAME:-AI Sales Agent}
+      - DEBUG=${DEBUG:-True}
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+    volumes:
+      - ./backend:/app
+      - backend-data:/app/data
+      - backend-logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - ai-sales-network
+
+  frontend:
+    image: nginx:alpine
+    container_name: ai-sales-agent-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - ai-sales-network
+
+volumes:
+  backend-data:
+  backend-logs:
+
+networks:
+  ai-sales-network:
+    driver: bridge
