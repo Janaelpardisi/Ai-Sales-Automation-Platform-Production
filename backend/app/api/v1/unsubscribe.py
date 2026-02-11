@@ -115,7 +115,7 @@ async def unsubscribe_page(token: str, request: Request):
         </head>
         <body>
             <div class="container">
-                <div class="icon">✅</div>
+                <div class="icon">SUCCESS</div>
                 <h1>Successfully Unsubscribed</h1>
                 <p>You have been successfully unsubscribed from our email list.</p>
                 

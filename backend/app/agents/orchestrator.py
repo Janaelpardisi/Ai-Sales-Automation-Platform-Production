@@ -102,12 +102,12 @@ class OrchestratorAgent:
             
             # Handle None or invalid final_state
             if final_state is None:
-                print("⚠️ Warning: orchestrator graph.ainvoke() returned None")
+                print("WARNING Warning: orchestrator graph.ainvoke() returned None")
                 return []
             
             return final_state.get("qualified_leads", [])
         except Exception as e:
-            print(f"❌ Orchestrator error: {str(e)}")
+            print(f"ERROR Orchestrator error: {str(e)}")
             import traceback
             traceback.print_exc()
             return []

@@ -71,7 +71,7 @@ class EmailFinder:
                 return None
                 
         except Exception as e:
-            print(f"⚠️ Hunter.io API error: {str(e)}")
+            print(f"WARNING: Hunter.io API error: {str(e)}")
             return None
     
     async def find_email_snov(self, domain: str, company_name: Optional[str] = None) -> Optional[str]:
@@ -127,7 +127,7 @@ class EmailFinder:
                 return None
                 
         except Exception as e:
-            print(f"⚠️ Snov.io API error: {str(e)}")
+            print(f"WARNING: Snov.io API error: {str(e)}")
             return None
     
     async def find_email_apollo(self, domain: str, company_name: Optional[str] = None) -> Optional[str]:
@@ -185,7 +185,7 @@ class EmailFinder:
                 return None
                 
         except Exception as e:
-            print(f"⚠️ Apollo.io API error: {str(e)}")
+            print(f"WARNING: Apollo.io API error: {str(e)}")
             return None
     
     def generate_email_patterns(
@@ -295,21 +295,21 @@ class EmailFinder:
             if settings.APOLLO_API_KEY:
                 email = await self.find_email_apollo(company_domain, company_name)
                 if email:
-                    print(f"✅ Found email via Apollo.io: {email}")
+                    print(f"SUCCESS: Found email via Apollo.io: {email}")
                     return email
             
             # Try Snov.io second (50 credits/month)
             if settings.SNOV_API_KEY:
                 email = await self.find_email_snov(company_domain, company_name)
                 if email:
-                    print(f"✅ Found email via Snov.io: {email}")
+                    print(f"SUCCESS: Found email via Snov.io: {email}")
                     return email
             
             # Try Hunter.io as last resort (25 credits/month)
             if settings.HUNTER_API_KEY:
                 email = await self.find_email_hunter(company_domain, company_name)
                 if email:
-                    print(f"✅ Found email via Hunter.io: {email}")
+                    print(f"SUCCESS: Found email via Hunter.io: {email}")
                     return email
         
         # Strategy 2: Try to find email from website

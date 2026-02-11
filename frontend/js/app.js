@@ -35,10 +35,10 @@ function showToast(message, type = 'info') {
     };
 
     const icons = {
-        success: '✅',
-        error: '❌',
+        success: 'SUCCESS',
+        error: 'ERROR',
         info: 'ℹ️',
-        warning: '⚠️'
+        warning: 'WARNING'
     };
 
     const toast = document.createElement('div');
@@ -232,7 +232,7 @@ async function loadCampaigns() {
             `;
         }
     } catch (error) {
-        container.innerHTML = '<div class="text-center py-6 text-red-500"><div class="text-3xl mb-2">❌</div><p class="text-sm">Error loading campaigns</p></div>';
+        container.innerHTML = '<div class="text-center py-6 text-red-500"><div class="text-3xl mb-2">ERROR</div><p class="text-sm">Error loading campaigns</p></div>';
         console.error(error);
     }
 }
@@ -283,8 +283,8 @@ async function loadLeads() {
                     };
 
                     const qualityIcons = {
-                        hot: '🔥',
-                        warm: '⭐',
+                        hot: 'HOT',
+                        warm: 'WARM',
                         cold: '❄️'
                     };
 
@@ -319,7 +319,7 @@ async function loadLeads() {
             `;
         }
     } catch (error) {
-        container.innerHTML = '<div class="text-center py-8 text-red-500"><div class="text-4xl mb-2">❌</div><p>Error loading leads</p></div>';
+        container.innerHTML = '<div class="text-center py-8 text-red-500"><div class="text-4xl mb-2">ERROR</div><p>Error loading leads</p></div>';
         console.error(error);
     }
 }

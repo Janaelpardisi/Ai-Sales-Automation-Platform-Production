@@ -82,13 +82,13 @@ class CampaignService:
     
     async def run_campaign(self, db: AsyncSession, campaign_id: int) -> dict:
         """Execute campaign workflow"""
-        logger.info(f"🚀 Starting campaign {campaign_id}...")
+        logger.info(f"STARTING Starting campaign {campaign_id}...")
         
         campaign = await self.get_campaign(db, campaign_id)
         if not campaign:
             raise ValueError("Campaign not found")
         
-        logger.info(f"✅ Campaign found: {campaign.name}")
+        logger.info(f"SUCCESS Campaign found: {campaign.name}")
         
         # Prepare campaign criteria
         target_criteria = campaign.target_criteria or {}
@@ -99,13 +99,13 @@ class CampaignService:
             "email_template": campaign.email_template,
         }
         
-        logger.info(f"📋 Campaign criteria: {criteria}")
+        logger.info(f"INFO Campaign criteria: {criteria}")
         
         # Use real search if enabled, otherwise mock data
         from app.config import settings
         
         if settings.USE_REAL_SEARCH:
-            logger.info("🔍 Using REAL data via SerpAPI...")
+            logger.info("SEARCH Using REAL data via SerpAPI...")
             
             # Use SerpAPI directly (bypass LangGraph completely)
             try:
@@ -114,7 +114,7 @@ class CampaignService:
                 from app.utils.gemini_client import gemini_client
                 
                 # Step 1: Generate search queries using Gemini
-                logger.info("🤖 Generating search queries...")
+                logger.info("AI Generating search queries...")
                 query_prompt = f"""
 Generate 3 specific search queries to find companies matching these criteria:
 - Industry: {criteria.get('industry', 'any')}
@@ -128,20 +128,20 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
                 if not search_queries or not isinstance(search_queries, list):
                     search_queries = [f"{criteria.get('industry', 'technology')} companies in {criteria.get('location', 'USA')}"]
                 
-                logger.info(f"📝 Generated {len(search_queries)} search queries")
+                logger.info(f"NOTE Generated {len(search_queries)} search queries")
                 
                 # Step 2: Search using SerpAPI
-                logger.info("📡 Searching Google via SerpAPI...")
+                logger.info("API Searching Google via SerpAPI...")
                 all_results = []
                 for query in search_queries[:3]:
                     try:
                         results = await web_scraper.google_search_real(query, num_results=5)
                         all_results.extend(results)
                     except Exception as e:
-                        logger.warning(f"⚠️  Search failed for '{query}': {str(e)}")
+                        logger.warning(f"WARNING  Search failed for '{query}': {str(e)}")
                         continue
                 
-                logger.info(f"✅ Found {len(all_results)} companies from Google")
+                logger.info(f"SUCCESS Found {len(all_results)} companies from Google")
                 
                 # Step 3: Convert to lead format
                 leads = []
@@ -180,22 +180,22 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
                         if qualification_agent.is_qualified(score_result["score"]):
                             qualified_leads.append(lead)
                     except Exception as e:
-                        logger.warning(f"⚠️  Failed to qualify {lead.get('company_name')}: {str(e)}")
+                        logger.warning(f"WARNING  Failed to qualify {lead.get('company_name')}: {str(e)}")
                         continue
                 
-                logger.info(f"✅ Qualified {len(qualified_leads)} leads out of {len(leads)} total")
+                logger.info(f"SUCCESS Qualified {len(qualified_leads)} leads out of {len(leads)} total")
                 
             except Exception as e:
-                logger.error(f"❌ Real search failed: {str(e)}")
+                logger.error(f"ERROR Real search failed: {str(e)}")
                 import traceback
                 traceback.print_exc()
-                logger.info("⚠️  Falling back to mock data...")
+                logger.info("WARNING  Falling back to mock data...")
                 qualified_leads = await self._generate_mock_leads(target_criteria)
         else:
-            logger.info("🎲 Using MOCK data for testing...")
+            logger.info("MOCK Using MOCK data for testing...")
             qualified_leads = await self._generate_mock_leads(target_criteria)
         
-        logger.info(f"✅ Total qualified leads: {len(qualified_leads)}")
+        logger.info(f"SUCCESS Total qualified leads: {len(qualified_leads)}")
         
         # Validate results
         if not qualified_leads:
@@ -208,12 +208,12 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
         
         # Save leads to database
         created_leads = []
-        logger.info(f"📝 Creating {len(qualified_leads)} leads in database...")
+        logger.info(f"NOTE Creating {len(qualified_leads)} leads in database...")
         
         for lead_data in qualified_leads:
             # Skip None or invalid lead data
             if not lead_data or not isinstance(lead_data, dict):
-                logger.warning(f"⚠️  Skipping invalid lead data: {lead_data}")
+                logger.warning(f"WARNING  Skipping invalid lead data: {lead_data}")
                 continue
                 
             try:
@@ -228,7 +228,7 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
                     source=lead_data.get("source"),
                 )
                 lead = await lead_service.create_lead(db, lead_create)
-                logger.info(f"✅ Created lead: {lead.company_name} (ID={lead.id})")
+                logger.info(f"SUCCESS Created lead: {lead.company_name} (ID={lead.id})")
                 
                 # Update with qualification data
                 from app.schemas.lead import LeadUpdate
@@ -240,10 +240,10 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
                 lead = await lead_service.update_lead(db, lead.id, lead_update)
                 created_leads.append(lead)
             except Exception as e:
-                logger.error(f"❌ Failed to create lead {lead_data.get('company_name')}: {str(e)}")
+                logger.error(f"ERROR Failed to create lead {lead_data.get('company_name')}: {str(e)}")
                 continue
         
-        logger.info(f"✅ Created {len(created_leads)} leads successfully")
+        logger.info(f"SUCCESS Created {len(created_leads)} leads successfully")
         
         # Update campaign statistics
         campaign.total_leads = len(qualified_leads)
@@ -307,11 +307,11 @@ Example: ["SaaS companies in USA", "cloud software providers United States"]
                 await db.commit()
                 
                 emails_sent += 1
-                logger.info(f"✅ Email sent to {lead.company_name} ({lead.contact_email})")
+                logger.info(f"SUCCESS Email sent to {lead.company_name} ({lead.contact_email})")
                 
             except Exception as e:
                 emails_failed += 1
-                logger.error(f"❌ Failed to send email to {lead.company_name}: {str(e)}")
+                logger.error(f"ERROR Failed to send email to {lead.company_name}: {str(e)}")
                 continue
         
         # Update campaign email stats

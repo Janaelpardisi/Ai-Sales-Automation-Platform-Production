@@ -144,12 +144,12 @@ Example: ["SaaS companies in San Francisco", "fintech startups in NYC"]
             
             # Handle None or invalid final_state
             if final_state is None:
-                print("⚠️ Warning: graph.ainvoke() returned None")
+                print("WARNING Warning: graph.ainvoke() returned None")
                 return []
             
             return final_state.get("results", [])
         except Exception as e:
-            print(f"❌ Research agent error: {str(e)}")
+            print(f"ERROR Research agent error: {str(e)}")
             return []
 
 

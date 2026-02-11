@@ -73,7 +73,7 @@ async function showAllCampaigns() {
             `;
         }
     } catch (error) {
-        container.innerHTML = '<div class="text-center py-6 text-red-500"><div class="text-3xl mb-2">❌</div><p class="text-sm">Error loading campaigns</p></div>';
+        container.innerHTML = '<div class="text-center py-6 text-red-500"><div class="text-3xl mb-2">ERROR</div><p class="text-sm">Error loading campaigns</p></div>';
         console.error(error);
     }
 }
