@@ -346,4 +346,4 @@ For questions, support, or collaboration opportunities, feel free to reach out!
 
 **Disclaimer**: This tool is for legitimate business outreach only. Always comply with email marketing laws (CAN-SPAM, GDPR, etc.) and respect unsubscribe requests.
 
-**Made with love by Jana**
+**Made by Jana**
