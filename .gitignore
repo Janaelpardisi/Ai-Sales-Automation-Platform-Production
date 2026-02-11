@@ -63,6 +63,10 @@ chroma/
 .coverage
 htmlcov/
 .tox/
+test_*.py
+check_*.py
+debug_*.py
+full_system_check.py
 
 # Misc
 *.bak
